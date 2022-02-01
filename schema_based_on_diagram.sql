@@ -11,6 +11,8 @@ CREATE TABLE medical_histories (
   status varchar(10)
 );
 
+CREATE INDEX ON "medical_histories" (patient_id);
+
 CREATE TABLE invoices (
   id int GENERATED ALWAYS AS IDENTITY, 
   total_amount int, 
