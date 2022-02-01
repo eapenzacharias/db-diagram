@@ -21,6 +21,8 @@ CREATE TABLE invoices (
   medical_history_id int REFERENCES medical_histories(id)
 );
 
+CREATE INDEX ON "invoices" (medical_history_id);
+
 CREATE TABLE treatments (
   id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   type varchar,
@@ -36,10 +38,13 @@ CREATE TABLE invoice_items (
   treatment_id int REFERENCES treatments(id)
 );
 
-
+CREATE INDEX ON "invoice_items" (invoice_id);
+CREATE INDEX ON "invoice_items" (treatment_id);
 
 CREATE TABLE treatments_history (
   id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
   treatment_id int REFERENCES treatments(id),
   medical_history_id int REFERENCES medical_histories(id)
 );
+
+
