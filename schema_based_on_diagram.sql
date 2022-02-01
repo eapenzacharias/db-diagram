@@ -47,4 +47,5 @@ CREATE TABLE treatments_history (
   medical_history_id int REFERENCES medical_histories(id)
 );
 
-
+CREATE INDEX ON "treatments_history" (treatment_id);
+CREATE INDEX ON "treatments_history" (medical_history_id);
