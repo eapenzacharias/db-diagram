@@ -1,11 +1,11 @@
 CREATE TABLE patients (
-  id int GENERATED ALWAYS AS IDENTITY,
+  id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name varchar(50),
   date_of_birth date
 );
 
 CREATE TABLE medical_histories (
-  id int GENERATED ALWAYS AS IDENTITY,
+  id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   admitted_at timestamp,
   patient_id int REFERENCES patients(id),
   status varchar(10)
@@ -14,7 +14,7 @@ CREATE TABLE medical_histories (
 CREATE INDEX ON "medical_histories" (patient_id);
 
 CREATE TABLE invoices (
-  id int GENERATED ALWAYS AS IDENTITY, 
+  id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
   total_amount int, 
   generated_at timestamp, 
   payed_at timestamp,
@@ -22,13 +22,13 @@ CREATE TABLE invoices (
 );
 
 CREATE TABLE treatments (
-  id int GENERATED ALWAYS AS IDENTITY,
+  id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   type varchar,
   name varchar
 );
 
 CREATE TABLE invoice_items (
-  id int GENERATED ALWAYS AS IDENTITY, 
+  id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
   unit_price decimal, 
   quantity int, 
   total_price decimal,
@@ -36,8 +36,10 @@ CREATE TABLE invoice_items (
   treatment_id int REFERENCES treatments(id)
 );
 
+
+
 CREATE TABLE treatments_history (
-  id int GENERATED ALWAYS AS IDENTITY, 
+  id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
   treatment_id int REFERENCES treatments(id),
   medical_history_id int REFERENCES medical_histories(id)
 );
