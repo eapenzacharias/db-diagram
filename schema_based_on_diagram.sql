@@ -25,3 +25,17 @@ CREATE TABLE treatments (
   name varchar
 );
 
+CREATE TABLE invoice_items (
+  id int GENERATED ALWAYS AS IDENTITY, 
+  unit_price decimal, 
+  quantity int, 
+  total_price decimal,
+  invoice_id int REFERENCES invoices(id),
+  treatment_id int REFERENCES treatments(id)
+);
+
+CREATE TABLE treatments_history (
+  id int GENERATED ALWAYS AS IDENTITY, 
+  treatment_id int REFERENCES treatments(id),
+  medical_history_id int REFERENCES medical_histories(id)
+);
